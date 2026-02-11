@@ -66,6 +66,15 @@ Prisma:
 
 ---
 
+A task is DONE only when:
+1) Acceptance criteria met
+2) npm run verify passes
+3) Judge explicitly accepts it
+
+Only then may the Worker mark it DONE in TASKS/current.md.
+
+---
+
 # Important Rule
 
 If this repo is generated from a template,
