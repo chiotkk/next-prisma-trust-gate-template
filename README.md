@@ -1,3 +1,73 @@
+# Next + Prisma Trust-Gate Template
+
+Baseline for agent-friendly, verifiable greenfield apps.
+
+## New Project Checklist
+
+### 1) Create project from template
+- Click "Use this template" on GitHub
+- Name your repo
+
+### 2) Update project identity
+- Update `name` in package.json
+- Update README title
+
+### 3) Configure database
+Pick a free port (avoid collisions):
+
+lsof -iTCP -sTCP:LISTEN | grep 543
+
+Edit:
+- docker-compose.yml (Postgres port)
+- .env DATABASE_URL
+
+### 4) Start services
+docker compose up -d
+
+### 5) Sync DB
+npx prisma db push
+npx prisma generate
+
+### 6) Run the trust gate
+npm run verify
+
+Must pass before writing features.
+
+---
+
+## Trust Gate Philosophy
+
+Agents can claim anything.
+`npm run verify` is reality.
+
+Always run it:
+- after schema changes
+- after refactors
+- before commits
+- before deploys
+
+---
+
+## Stack
+
+- Next.js
+- Prisma 7 + adapter-pg
+- Postgres
+- Redis + BullMQ
+- ESLint + TypeScript
+- Smoke-tested verification
+
+---
+
+## Future Improvements
+
+- Add test runner (Vitest)
+- Add CI to run `npm run verify`
+- Add S3/R2 file storage
+- Add auth
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
